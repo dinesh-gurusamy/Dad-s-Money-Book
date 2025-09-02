@@ -22,7 +22,7 @@ export default function Repayment() {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const res = await API.get("/repayment");
+        const res = await API.get("/repayment/options");
         setOptions(res.data);
       // eslint-disable-next-line no-unused-vars
       } catch (error) {
@@ -206,21 +206,21 @@ export default function Repayment() {
       </div>
 
       {/* Fade-in Animation */}
-      <style jsx>{`
-        .animate-fade-in {
-          animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-5px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+     <style>{`
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`}</style>
     </div>
   );
 }
