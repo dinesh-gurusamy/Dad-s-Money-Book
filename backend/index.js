@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 const corsOptions = {
   origin: [
-    "http://localhost:3000",
+    "http://localhost:5173",
     "https://dad-s-money-book.vercel.app", // Replace with your deployed frontend
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],

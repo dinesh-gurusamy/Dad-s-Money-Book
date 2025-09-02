@@ -22,7 +22,7 @@ export default function Repayment() {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const res = await API.get("/repayment/options");
+        const res = await API.get("/repayment");
         setOptions(res.data);
       // eslint-disable-next-line no-unused-vars
       } catch (error) {
