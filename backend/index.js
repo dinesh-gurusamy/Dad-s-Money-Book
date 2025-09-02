@@ -1,17 +1,22 @@
-// index.js
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://dad-s-money-book.vercel.app", // Replace with your deployed frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
@@ -23,7 +28,6 @@ app.use("/api/expense", require("./routes/expense"));
 app.use("/api/repayment", require("./routes/repayment"));
 app.use("/api/dashboard", require("./routes/dashboard"));
 app.use("/api/transactions", require("./routes/transaction"));
-
 
 // Connect to MongoDB
 mongoose
