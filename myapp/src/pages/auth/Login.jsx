@@ -1,8 +1,8 @@
 // src/pages/auth/Login.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useAuth } from "../../context/AuthContext"; // ✅ import auth hook
+import { useAuth } from "../../context/AuthContext"; 
+import API from "../../config/api";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -19,7 +19,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await API.post("/auth/login", formData);
 
       // Save user data and token
       localStorage.setItem("userInfo", JSON.stringify(res.data));

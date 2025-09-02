@@ -1,6 +1,6 @@
 // src/pages/MoneyIn/Loans.js
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../../config/api";
 import { useNavigate } from "react-router-dom";
 
 export default function AddLoan() {
@@ -50,7 +50,7 @@ export default function AddLoan() {
       };
 
       // Send to backend
-      await axios.post("http://localhost:5000/api/loan", formData, config);
+      await API.post("/loan", formData, config);
 
       // Success: reset form, show notification
       setFormData({

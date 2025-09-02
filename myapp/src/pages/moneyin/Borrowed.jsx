@@ -1,6 +1,6 @@
 // src/pages/MoneyIn/Borrowed.js
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../../config/api";
 import { useNavigate } from "react-router-dom";
 
 export default function AddBorrowedMoney() {
@@ -43,7 +43,7 @@ export default function AddBorrowedMoney() {
       };
 
       // Send to backend
-      await axios.post("http://localhost:5000/api/borrowed", formData, config);
+      await API.post("/borrowed", formData, config);
 
       // Success: reset form, show notification
       setFormData({ date: "", personName: "", amount: "", dueDate: "", notes: "" });

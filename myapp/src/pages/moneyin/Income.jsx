@@ -1,6 +1,6 @@
 // src/pages/MoneyIn/Income.js
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../../config/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Income() {
@@ -40,7 +40,7 @@ export default function Income() {
         },
       };
 
-      await axios.post("http://localhost:5000/api/income", formData, config);
+      await API.post("/income", formData, config);
 
       // ✅ Reset form
       setFormData({ date: "", source: "", amount: "", notes: "" });

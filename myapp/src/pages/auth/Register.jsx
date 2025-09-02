@@ -1,7 +1,7 @@
 // src/Register.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../config/api";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+      const res = await API.post("/auth/register", formData);
 
       // Save user info
       localStorage.setItem("userInfo", JSON.stringify(res.data));

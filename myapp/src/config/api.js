@@ -2,10 +2,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api",
 });
 
-// Include token in headers if available
+// Auto-attach token
 API.interceptors.request.use((config) => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   if (userInfo?.token) {

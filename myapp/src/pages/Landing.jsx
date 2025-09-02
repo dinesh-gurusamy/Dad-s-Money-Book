@@ -1,7 +1,7 @@
 // src/pages/Landing.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../config/api";
 import { useAuth } from "../context/AuthContext";
 
 export default function Landing() {
@@ -19,7 +19,7 @@ export default function Landing() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await API.post("/auth/login", formData);
 
       localStorage.setItem("userInfo", JSON.stringify(res.data));
       login();
