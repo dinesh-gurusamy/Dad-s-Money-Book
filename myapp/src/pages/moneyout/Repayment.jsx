@@ -24,6 +24,7 @@ export default function Repayment() {
       try {
         const res = await API.get("/repayment/options");
         setOptions(res.data);
+      // eslint-disable-next-line no-unused-vars
       } catch (error) {
         console.error("Failed to load repayment options");
       }
