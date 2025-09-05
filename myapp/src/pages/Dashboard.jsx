@@ -98,11 +98,11 @@ export default function Dashboard() {
       </div>
 
       {/* Progress Bars */}
-      <div className="p-6 bg-white border rounded-xl shadow-sm mb-8 transition hover:shadow-md">
-        <h2 className="text-xl font-bold mb-5">Spending Overview</h2>
+      {/* <div className="p-6 bg-white border rounded-xl shadow-sm mb-8 transition hover:shadow-md"> */}
+        {/* <h2 className="text-xl font-bold mb-5">Spending Overview</h2> */}
 
         {/* Expenses vs Income */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <div className="flex justify-between text-sm text-gray-600 mb-1">
             <span>Expenses vs Income</span>
             <span>{data.income ? Math.round((data.expenses / data.income) * 100) : 0}%</span>
@@ -113,10 +113,10 @@ export default function Dashboard() {
               style={{ width: `${data.income ? (data.expenses / data.income) * 100 : 0}%` }}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Repaid vs Borrowed */}
-        <div>
+        {/* <div>
           <div className="flex justify-between text-sm text-gray-600 mb-1">
             <span>Repayment Progress</span>
             <span>{data.borrowed ? Math.round((data.repaid / data.borrowed) * 100) : 0}%</span>
@@ -128,7 +128,7 @@ export default function Dashboard() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Upcoming Payments */}
       <div className="p-6 bg-white border rounded-xl shadow-sm transition hover:shadow-md">
