@@ -108,10 +108,10 @@ export default function AddLoan() {
               required
             >
               <option value="">Select Provider</option>
-              <option value="HDFC">HDFC Bank</option>
+              <option value="IDFC">IDFC</option>
               <option value="Muthoot">Muthoot Finance</option>
-              <option value="ICICI">ICICI Bank</option>
-              <option value="SBI">State Bank of India</option>
+              <option value="Annapoorna">Annapoorna</option>
+              <option value="Tata_Capital">Tata Capital</option>
               <option value="Other">Other</option>
             </select>
           </div>

@@ -95,9 +95,9 @@ export default function Income() {
             >
               <option value="">Select Source</option>
               <option value="salary">Salary</option>
-              <option value="gift">Gift</option>
-              <option value="refund">Refund</option>
-              <option value="investment">Investment</option>
+              <option value="mill">Mill Thottam</option>
+              <option value="farm">Farm</option>
+              <option value="car">Car</option>
               <option value="Other">Other</option>
             </select>
           </div>
