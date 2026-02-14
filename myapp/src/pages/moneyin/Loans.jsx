@@ -112,6 +112,7 @@ export default function AddLoan() {
               <option value="Muthoot">Muthoot Finance</option>
               <option value="Annapoorna">Annapoorna</option>
               <option value="Tata_Capital">Tata Capital</option>
+              <option value="mill_kuthagai">Mill Thottam Kithagai</option>
               <option value="Other">Other</option>
             </select>
           </div>
