@@ -19,6 +19,7 @@ export default function Login() {
     setLoading(true);
 
     try {
+      console.log(formData);
       const res = await API.post("/auth/login", formData);
 
       // Save user data and token
