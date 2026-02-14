@@ -83,7 +83,7 @@ export default function AddLoan() {
       <h1 className="text-3xl text-blue-800 text-center mb-8">Add Loan (Finance)</h1>
 
       <div className="flex items-center justify-center mb-10 flex-1 px-4 sm:px-0 w-full">
-        <form className="w-full max-w-[700px] p-6" onSubmit={handleSubmit}>
+        <form className="w-full max-w-[700px]" onSubmit={handleSubmit}>
           {/* Date */}
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_3fr] mb-10 gap-y-2 sm:gap-y-0 sm:items-center">
             <label className="block text-lg font-thin mb-1">Date</label>
