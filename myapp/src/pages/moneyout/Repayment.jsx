@@ -1,4 +1,3 @@
-// src/pages/MoneyOut/Repayment.js
 import React, { useState, useEffect } from "react";
 import API from "../../config/api";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +6,8 @@ export default function Repayment() {
   const [formData, setFormData] = useState({
     date: "",
     repaymentType: "",
-    paidTo: "",
+    relatedId: "", // 🔑 New: used to identify specific loan/borrowed record
+    paidTo: "",    // Name for display/legacy tracking
     amount: "",
     mode: "",
     notes: "",
@@ -24,8 +24,7 @@ export default function Repayment() {
       try {
         const res = await API.get("/repayment/options");
         setOptions(res.data);
-      // eslint-disable-next-line no-unused-vars
-      } catch (error) {
+      } catch {
         console.error("Failed to load repayment options");
       }
     };
@@ -34,10 +33,21 @@ export default function Repayment() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "relatedId") {
+      // 🔑 Find the matching name for the selected ID
+      const selectedOption = filteredOptions.find((opt) => (opt.id === value || opt._id === value));
+      setFormData((prev) => ({
+        ...prev,
+        relatedId: value,
+        paidTo: selectedOption ? selectedOption.name : "",
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
 
     if (name === "repaymentType") {
-      setFormData((prev) => ({ ...prev, paidTo: "", amount: "" }));
+      setFormData((prev) => ({ ...prev, relatedId: "", paidTo: "", amount: "" }));
     }
   };
 
@@ -45,7 +55,8 @@ export default function Repayment() {
     e.preventDefault();
     setLoading(true);
 
-    if (!formData.date || !formData.repaymentType || !formData.paidTo || !formData.amount || !formData.mode) {
+    // 🔑 Ensure relatedId is validated instead of just paidTo
+    if (!formData.date || !formData.repaymentType || !formData.relatedId || !formData.amount || !formData.mode) {
       alert("Please fill all required fields.");
       setLoading(false);
       return;
@@ -54,7 +65,7 @@ export default function Repayment() {
     try {
       await API.post("/repayment", formData);
 
-      setFormData({ date: "", repaymentType: "", paidTo: "", amount: "", mode: "", notes: "" });
+      setFormData({ date: "", repaymentType: "", relatedId: "", paidTo: "", amount: "", mode: "", notes: "" });
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
       setLoading(false);
@@ -109,12 +120,12 @@ export default function Repayment() {
             </select>
           </div>
 
-          {/* Paid To */}
+          {/* Paid To (Linked by ID) */}
           <div className="grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-3 mb-6 sm:mb-10">
-            <label className="block text-base sm:text-lg font-thin">Paid To</label>
+            <label className="block text-base sm:text-lg font-thin">Select Record</label>
             <select
-              name="paidTo"
-              value={formData.paidTo}
+              name="relatedId"
+              value={formData.relatedId}
               onChange={handleChange}
               className="w-full px-3 py-2 border border-x-blue-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -123,8 +134,8 @@ export default function Repayment() {
               <option value="">
                 Select {formData.repaymentType || "Record"}
               </option>
-              {filteredOptions.map((opt, idx) => (
-                <option key={idx} value={opt.name}>
+              {filteredOptions.map((opt) => (
+                <option key={opt.id || opt._id} value={opt.id || opt._id}>
                   {opt.name} (₹{opt.balance} due)
                 </option>
               ))}
@@ -205,22 +216,21 @@ export default function Repayment() {
         </form>
       </div>
 
-      {/* Fade-in Animation */}
-     <style>{`
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`}</style>
+      <style>{`
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
